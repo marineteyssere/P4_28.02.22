@@ -28,15 +28,16 @@ function closeModal() {
 //Formulaire 
 
 
-function validateFirstName() {
+function validateFirstName () {
 
   let vrai = 'firstNameValid'
   formData[data-error-visible]="true" 
-  if (first = length >= 2){
+  if (first.length >= 2){
       return vrai ;
   }else{
      return formData[data-error-visible] +='Veuillez entrer 2 caractères ou plus pour le champ du prénom'; 
   }
-  
 }
+
+//document.getElementById('first').addEventListener ('click')
 
