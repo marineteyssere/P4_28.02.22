@@ -12,6 +12,11 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closebtn = document.querySelectorAll(".close"); //CROIX FERMER
+const nom = document.getElementById('last');
+const prenom = document.getElementById('first');
+const mail = document.getElementById('email');
+const date = document.getElementById('birthdate');
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -27,17 +32,22 @@ function closeModal() {
 
 //Formulaire 
 
+//variable appeler html via id
+//créer element dom msg d erreur function
+//validation avec regex
 
-function validateFirstName () {
+let validation = document.getElementsByClassName ('text-control')
 
-  let vrai = 'firstNameValid'
-  formData[data-error-visible]="true" 
-  if (first.length >= 2){
-      return vrai ;
-  }else{
-     return formData[data-error-visible] +='Veuillez entrer 2 caractères ou plus pour le champ du prénom'; 
-  }
+validation= true
+if (validation.innerHTML += 'ok bro'){
+}else{  validation.innerHTML += 'Veuillez entrer 2 caractères ou plus pour le champ du prénom';
 }
 
-//document.getElementById('first').addEventListener ('click')
+if(/^[A-Za-z]{2}$/(prenom)){
+  validation=true;
+}else{
+  validation=false;
+}
+
+
 
