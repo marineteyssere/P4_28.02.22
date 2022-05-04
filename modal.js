@@ -1,3 +1,5 @@
+//PARTIE DEJA PRESENTE //
+
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -27,11 +29,9 @@ function closeModal() {
   modalbg.style.display = "none"; //CROIX FERMER
 }
 
-//Formulaire 
+// FIN PARTIE DEJA PRESENTE //
 
-//variable appeler html via id
-//créer element dom msg d erreur function
-//validation avec regex
+//MA PARTIE//
 
 const first = document.getElementById("first");
 const firstError = document.getElementById("firstError");
@@ -55,22 +55,19 @@ const conditions = document.getElementById("checkbox1");
 const conditionsError = document.getElementById("conditionsError");
 
 
-//---------------------------------------------------------------------------------------------------//
+let formOk = false;  
 
-let formOk = false;
-
-// inputs check + error message and its style
 function checkInputs(){
   
   // if first.value is empty and doesn't respect regex name, or first.length is less than 2 characters
   // then error message is displayed
-  let verifName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+  let verifName = /^[a-zA-Z é è à -]{2,30}$/;
   if(verifName.exec(first.value) === null || first.length < 2) {
     firstError.textContent = "Veuillez entrer 2 caractères minimum";
-    firstError.style.color = "red";
-    firstError.style.fontSize = "10px";
-    first.style.borderColor = "red";
-    first.style.borderWidth = "2px";
+    lastError.style.color = "red";
+    lastError.style.fontSize = "10px";
+    last.style.borderColor = "red";
+    last.style.borderWidth = "2px";
     return formOk === false;
   } else {
     firstError.style.display = "none";
@@ -78,9 +75,11 @@ function checkInputs(){
     first.style.fontSize = "10px";
     first.style.borderColor = "green";
     first.style.borderWidth = "2px";
+
   }
 
-  if(verifName.exec(last.value) === null || last.length < 2) {
+  let verifLast = /^[a-zA-Z é è à -]{2,30}$/;
+  if(verifLast.exec(last.value) === null || last.length < 2) {
     lastError.textContent = "Veuillez entrer 2 caractères minimum";
     lastError.style.color = "red";
     lastError.style.fontSize = "10px";
@@ -127,7 +126,7 @@ function checkInputs(){
     birthdate.style.borderWidth = "2px";
   }
 
-  /* if quantity.value is empty or its value is not a number => error
+  //if quantity.value is empty or its value is not a number => error//
   if(quantity.value === "" || isNaN(quantity.value)) {
     quantityError.textContent = "Veuillez renseigner ce champ";
     quantityError.style.color = "red";
@@ -140,7 +139,7 @@ function checkInputs(){
     quantity.style = "default";
   }
 
-  if one of the option is not checked => error
+ // if one of the option is not checked => error//
   if(!(location2[0].checked || location2[1].checked || location2[2].checked || location2[3].checked || location2[4].checked || location2[5].checked)) {
     locationError.textContent = "Veuillez choisir une option";
     locationError.style.color = "red";
@@ -163,4 +162,7 @@ function checkInputs(){
     conditions.style = "default";
   }
   return formOk = true;
-}*/
+
+
+}
+
