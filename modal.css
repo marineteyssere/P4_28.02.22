@@ -228,9 +228,6 @@ input {
   border: 2px solid #e54858;
 }
 
-.correct {
-  border: 2px solid green;
-}
 /* 
 input[data-error]::after {
     content: attr(data-error);

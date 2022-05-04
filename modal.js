@@ -55,20 +55,20 @@ const conditions = document.getElementById("checkbox1");
 const conditionsError = document.getElementById("conditionsError");
 
 
-let formOk = false;  
+let formKo = document.getElementsByClassName("form-data"); 
+formKo.style.color = "red";
+formKo.style.fontSize = "10px";
+formKo.style.borderColor = "red";
+formKo.style.borderWidth = "2px";
 
 function checkInputs(){
   
   // if first.value is empty and doesn't respect regex name, or first.length is less than 2 characters
   // then error message is displayed
-  let verifName = /^[a-zA-Z é è à -]{2,30}$/;
+  let verifName = /^[a-zA-Z é è à -]{2,}$/;
   if(verifName.exec(first.value) === null || first.length < 2) {
     firstError.textContent = "Veuillez entrer 2 caractères minimum";
-    lastError.style.color = "red";
-    lastError.style.fontSize = "10px";
-    last.style.borderColor = "red";
-    last.style.borderWidth = "2px";
-    return formOk === false;
+    return formKo;
   } else {
     firstError.style.display = "none";
     first.style.color = "green";
@@ -78,14 +78,10 @@ function checkInputs(){
 
   }
 
-  let verifLast = /^[a-zA-Z é è à -]{2,30}$/;
+  let verifLast = /^[a-zA-Z é è à -]{2,}$/;
   if(verifLast.exec(last.value) === null || last.length < 2) {
     lastError.textContent = "Veuillez entrer 2 caractères minimum";
-    lastError.style.color = "red";
-    lastError.style.fontSize = "10px";
-    last.style.borderColor = "red";
-    last.style.borderWidth = "2px";
-    return formOk === false;
+    return formKo;
   }  else {
     lastError.style.display = "none";
     last.style.color = "green";
@@ -98,11 +94,7 @@ function checkInputs(){
   let verifEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   if(verifEmail.exec(email.value) === null) {
     emailError.textContent = "Veuillez renseigner votre adresse mail";
-    emailError.style.color = "red";
-    emailError.style.fontSize = "10px";
-    email.style.borderColor = "red";
-    email.style.borderWidth = "2px";
-    return formOk === false;
+    return formKo;
   } else {
     emailError.style.display = "none";
     email.style.color = "green";
@@ -113,11 +105,7 @@ function checkInputs(){
 
   if(!birthdate.value) {
     birthdateError.textContent =  "Veuillez entrer votre date de naissance";
-    birthdateError.style.color = "red";
-    birthdateError.style.fontSize = "10px";
-    birthdate.style.borderColor = "red";
-    birthdate.style.borderWidth = "2px";
-    return formOk === false;
+    return formKo;
   } else {
     birthdateError.style.display = "none";
     birthdate.style.color = "green";
@@ -129,11 +117,7 @@ function checkInputs(){
   //if quantity.value is empty or its value is not a number => error//
   if(quantity.value === "" || isNaN(quantity.value)) {
     quantityError.textContent = "Veuillez renseigner ce champ";
-    quantityError.style.color = "red";
-    quantityError.style.fontSize = "10px";
-    quantity.style.borderColor = "red";
-    quantity.style.borderWidth = "2px";
-    return formOk === false;
+    return formKo;
   } else {
     quantityError.style.display = "none";
     quantity.style = "default";
@@ -144,7 +128,7 @@ function checkInputs(){
     locationError.textContent = "Veuillez choisir une option";
     locationError.style.color = "red";
     locationError.style.fontSize = "10px";
-    return formOk === false;
+    return formKo === false;
   } else {
     locationError.style.display = "none";
     location2.style = "default";
@@ -152,16 +136,12 @@ function checkInputs(){
 
   if(!conditions.checked) { 
     conditionsError.textContent = "Veuillez vérifier que vous avez accepté les termes et conditions";
-    conditionsError.style.color = "red";
-    conditionsError.style.fontSize = "10px";
-    conditions.style.borderColor = "red";
-    conditions.style.borderWidth = "2px";
-    return formOk === false;
+    return formKo;
   } else {
     conditionsError.style.display = "none";
     conditions.style = "default";
   }
-  return formOk = true;
+  return formKo = true;
 
 
 }
