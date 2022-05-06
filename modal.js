@@ -31,7 +31,7 @@ function closeModal() {
 
 // FIN PARTIE DEJA PRESENTE //
 
-//MA PARTIE//
+//--------------------------------MA PARTIE--------------------------------------------------------//
 
 const first = document.getElementById("first");
 const firstError = document.getElementById("firstError");
@@ -145,4 +145,6 @@ function checkInputs(){
 
 
 }
+
+//--------------------------------------------------------------------------------------------------------------//
 
