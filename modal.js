@@ -55,96 +55,101 @@ const conditions = document.getElementById("checkbox1");
 const conditionsError = document.getElementById("conditionsError");
 
 
-let formKo = document.getElementsByClassName("form-data"); 
-formKo.style.color = "red";
-formKo.style.fontSize = "10px";
-formKo.style.borderColor = "red";
-formKo.style.borderWidth = "2px";
 
-function checkInputs(){
-  
-  // if first.value is empty and doesn't respect regex name, or first.length is less than 2 characters
-  // then error message is displayed
-  let verifName = /^[a-zA-Z é è à -]{2,}$/;
-  if(verifName.exec(first.value) === null || first.length < 2) {
-    firstError.textContent = "Veuillez entrer 2 caractères minimum";
-    return formKo;
-  } else {
-    firstError.style.display = "none";
-    first.style.color = "green";
-    first.style.fontSize = "10px";
-    first.style.borderColor = "green";
-    first.style.borderWidth = "2px";
-
-  }
-
-  let verifLast = /^[a-zA-Z é è à -]{2,}$/;
-  if(verifLast.exec(last.value) === null || last.length < 2) {
-    lastError.textContent = "Veuillez entrer 2 caractères minimum";
-    return formKo;
-  }  else {
-    lastError.style.display = "none";
-    last.style.color = "green";
-    last.style.fontSize = "10px";
-    last.style.borderColor = "green";
-    last.style.borderWidth = "2px";
-  }
-
-  // if email doesn't correspond to regex => error
-  let verifEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-  if(verifEmail.exec(email.value) === null) {
-    emailError.textContent = "Veuillez renseigner votre adresse mail";
-    return formKo;
-  } else {
-    emailError.style.display = "none";
-    email.style.color = "green";
-    email.style.fontSize = "10px";
-    email.style.borderColor = "green";
-    email.style.borderWidth = "2px";
-  }
-
-  if(!birthdate.value) {
-    birthdateError.textContent =  "Veuillez entrer votre date de naissance";
-    return formKo;
-  } else {
-    birthdateError.style.display = "none";
-    birthdate.style.color = "green";
-    birthdate.style.fontSize = "10px";
-    birthdate.style.borderColor = "green";
-    birthdate.style.borderWidth = "2px";
-  }
-
-  //if quantity.value is empty or its value is not a number => error//
-  if(quantity.value === "" || isNaN(quantity.value)) {
-    quantityError.textContent = "Veuillez renseigner ce champ";
-    return formKo;
-  } else {
-    quantityError.style.display = "none";
-    quantity.style = "default";
-  }
-
- // if one of the option is not checked => error//
-  if(!(location2[0].checked || location2[1].checked || location2[2].checked || location2[3].checked || location2[4].checked || location2[5].checked)) {
-    locationError.textContent = "Veuillez choisir une option";
-    locationError.style.color = "red";
-    locationError.style.fontSize = "10px";
-    return formKo === false;
-  } else {
-    locationError.style.display = "none";
-    location2.style = "default";
-  }
-
-  if(!conditions.checked) { 
-    conditionsError.textContent = "Veuillez vérifier que vous avez accepté les termes et conditions";
-    return formKo;
-  } else {
-    conditionsError.style.display = "none";
-    conditions.style = "default";
-  }
-  return formKo = true;
-
-
-}
 
 //--------------------------------------------------------------------------------------------------------------//
 
+// Suppression des messages d'erreur
+
+function textControl () {document.getElementById("text-control")};
+
+textControl(firstError, lastError, emailError, birthdateError, quantityError, locationError, conditionsError);
+
+console.log(textControl)
+
+
+  // Fonction créant des messages d'erreur
+
+function textControl (elementErrorId, name) {
+
+elementErrorId.insertAdjacentHTML(
+
+  "afterend",
+
+  "<span id='" + name + "-error' class='formData'></span>"
+
+);
+
+}
+
+
+
+// Fonction permettant de cacher les messages d'erreurs des champs
+
+function textControl(errorName) {
+
+errorName.style.display = "none";
+
+}
+
+
+
+// Erreur du champ Prénom
+
+//createErrorMessage(firstError, "firstError");
+
+//hideError(firstError);
+
+
+
+// Validation des noms par expression régulière
+
+function nameRegexValidation(first) {
+
+const re = /[a-zA-Z]/;
+
+return re.test(String(first));
+
+}
+
+
+
+// Fonction permettant de valider le prénom
+
+function firstValidation() {
+
+// Si la valeur du champ est moins longue que deux caractères, on renvoie une erreur
+
+if (first.value.length < 2) {
+
+  firstError.textContent = "Merci d'entrer au minimum deux caractères"; // Message d'erreur affiché
+
+  firstError.style.display = "block"; // On affiche le bloc d'erreur
+
+  return false;
+
+} else {
+
+  // Sinon, si la valeur du champ contient des chiffres ou caractères spéciaux, on renvoie une erreur
+
+  if (nameRegexValidation(first.value) == false) {
+
+    firstError.textContent = "Pas de chiffres ou de caractères spéciaux"; // Message d'erreur affiché
+
+    firstError.style.display = "block"; // On affiche le bloc d'erreur
+
+    return false;
+
+    // Sinon on valide le champ et on renvoie "true"
+
+  } else {
+
+    firstError.style.display = "none"; // On cache le bloc d'erreur s'il n'y en a pas
+
+    return true;
+
+  }
+
+}
+
+}
