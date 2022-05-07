@@ -31,125 +31,150 @@ function closeModal() {
 
 // FIN PARTIE DEJA PRESENTE //
 
-//--------------------------------MA PARTIE--------------------------------------------------------//
+// ------------------------------------------FORMULAIRE--------------------------------------------//
 
-const first = document.getElementById("first");
-const firstError = document.getElementById("firstError");
+// Conditions regex 
 
-const last = document.getElementById("last");
-const lastError = document.getElementById("lastError");
-
-const email = document.getElementById("email");
-const emailError = document.getElementById("emailError");
-
-const birthdate = document.getElementById("birthdate"); 
-const birthdateError = document.getElementById("birthdateError");
-
-const quantity = document.getElementById("quantity");
-const quantityError = document.getElementById("quantityError");
-
-const location2 = document.getElementsByName("location");
-const locationError = document.getElementById("locationError");
-
-const conditions = document.getElementById("checkbox1");
-const conditionsError = document.getElementById("conditionsError");
+const patterns = {
+  first: /^[a-zA-Z é è à -]{2,30}$/i,
+  last: /^[a-zA-Z é è à -]{2,30}$/i,
+  email: /^([a-z\d\./_-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,5})?$/,
+  birthdate: /^\d{4}(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])$/i,
+  challenge: /^[0-9]{1,3}$/,
+};
 
 
+//Validation "C'est parti"
 
+const modalBody = document.querySelector(".modal-body");
+const form = document.querySelector("form");
 
-//--------------------------------------------------------------------------------------------------------------//
+let First = 0;
+let Last = 0;
+let Email = 0;
+let Birthdate = 0;
+let Challenge = 0;
+let City = 0;
+let Conditions = 0;
 
-// Suppression des messages d'erreur
+// Test des champs 
 
-function textControl () {document.getElementById("text-control")};
+function testFirst() {
+  const prenom = document.getElementById('first').value;
+  const p = document.getElementById('premier');  
 
-textControl(firstError, lastError, emailError, birthdateError, quantityError, locationError, conditionsError);
-
-console.log(textControl)
-
-
-  // Fonction créant des messages d'erreur
-
-function textControl (elementErrorId, name) {
-
-elementErrorId.insertAdjacentHTML(
-
-  "afterend",
-
-  "<span id='" + name + "-error' class='formData'></span>"
-
-);
-
-}
-
-
-
-// Fonction permettant de cacher les messages d'erreurs des champs
-
-function textControl(errorName) {
-
-errorName.style.display = "none";
-
-}
-
-
-
-// Erreur du champ Prénom
-
-//createErrorMessage(firstError, "firstError");
-
-//hideError(firstError);
-
-
-
-// Validation des noms par expression régulière
-
-function nameRegexValidation(first) {
-
-const re = /[a-zA-Z]/;
-
-return re.test(String(first));
-
-}
-
-
-
-// Fonction permettant de valider le prénom
-
-function firstValidation() {
-
-// Si la valeur du champ est moins longue que deux caractères, on renvoie une erreur
-
-if (first.value.length < 2) {
-
-  firstError.textContent = "Merci d'entrer au minimum deux caractères"; // Message d'erreur affiché
-
-  firstError.style.display = "block"; // On affiche le bloc d'erreur
-
-  return false;
-
-} else {
-
-  // Sinon, si la valeur du champ contient des chiffres ou caractères spéciaux, on renvoie une erreur
-
-  if (nameRegexValidation(first.value) == false) {
-
-    firstError.textContent = "Pas de chiffres ou de caractères spéciaux"; // Message d'erreur affiché
-
-    firstError.style.display = "block"; // On affiche le bloc d'erreur
-
-    return false;
-
-    // Sinon on valide le champ et on renvoie "true"
-
-  } else {
-
-    firstError.style.display = "none"; // On cache le bloc d'erreur s'il n'y en a pas
-
-    return true;
-
+    if (patterns.first.test(prenom)) {
+      p.className = 'valid';
+      return First = 1;
+    } else {
+      p.className = 'invalid';  
+      return First = 0;   
+    } 
   }
 
-}
+  function testLast() {
+    const nom = document.getElementById('last').value;
+    const p = document.getElementById('deuxieme');
+
+    if (patterns.last.test(nom)) {
+      p.className = 'valid';
+      return Last = 1; 
+    } else {
+      p.className = 'invalid';
+      return Last = 0;
+    } 
+  }
+  
+  function testEmail() {
+    const mail = document.getElementById('email').value;
+    const p = document.getElementById('troisieme');
+    const i = 0;
+
+    if (patterns.email.test(mail)) {
+      p.className = 'valid';
+      return Email = 1;  
+    } else {
+      p.className = 'invalid';
+      return Email = 0; 
+    } 
+  }
+
+  function testDate() {
+    const date = document.getElementById('birthdate').value;
+    const p = document.getElementById('quatrieme');
+    const i = 0;
+
+    if (patterns.birthdate.test(date)) {
+      p.className = 'valid';
+      return Birthdate = 1;  
+    } else if (date == '') {
+      p.className = 'invalid';
+      return Birthdate = 0;   
+    } 
+  }
+
+  function testParticipate() {
+    const participate = document.getElementById('quantity').value;
+    const p = document.getElementById('cinquieme');
+    const i = 0;
+
+    if (patterns.challenge.test(participate)) {
+      p.className = 'valid';
+      return Challenge = 1; 
+    } else if (participate == '') {
+      p.className = 'invalid';
+      return Challenge = 0;    
+    } 
+  }
+
+  function testCity() {
+    const cityChecked = document.querySelector('input[name=location]:checked');
+    const p = document.getElementById('sixieme');
+
+    if (cityChecked != null) {
+      p.className = 'valid';
+      return City = 1;
+    } else {
+      p.className = 'invalid';
+      return City = 0;
+    } 
+  }
+
+  function testCondition() {
+    const conditionChecked = document.getElementById('checkbox1').checked;
+    const p = document.getElementById('septieme');
+
+    if (conditionChecked == false) {
+      p.className = 'invalid';
+      return Conditions = 0; 
+    } else {
+      p.className = 'valid';
+      return Conditions = 1;
+    } 
+  }
+
+// Validation du formulaire + modal Merci
+function validation() {
+
+  let sum = 0;
+
+  testFirst();
+  testLast();
+  testEmail();
+  testDate();
+  testParticipate();
+  testCity();
+  testCondition();
+
+  sum = First + Last + Email + Birthdate + Challenge + City + Conditions;
+  
+  if (sum > 6) {
+    modalBody.removeChild(form);
+    modalBody.innerHTML = `<div class="innerContent">Merci pour <br> votre inscription</div><div class="button buttonStyle" onclick="closeModal();">Fermer</div>`;
+    return true;
+  } else if (sum <= 6){
+    console.log(sum)
+    return false;
+  }
 
 }
