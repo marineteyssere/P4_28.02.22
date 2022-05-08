@@ -35,11 +35,11 @@ function closeModal() {
 
 // Conditions regex 
 
-const patterns = {
-  first: /^[a-zA-Z é è à -]{2,30}$/i,
-  last: /^[a-zA-Z é è à -]{2,30}$/i,
+const regex = {
+  first: /^[a-zA-Z é è à -]{2,30}$/,
+  last: /^[a-zA-Z é è à -]{2,30}$/,
   email: /^([a-z\d\./_-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,5})?$/,
-  birthdate: /^\d{4}(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])$/i,
+  birthdate: /^\d{4}(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])$/,
   challenge: /^[0-9]{1,3}$/,
 };
 
@@ -57,17 +57,23 @@ let Challenge = 0;
 let City = 0;
 let Conditions = 0;
 
+
 // Test des champs 
 
 function testFirst() {
   const prenom = document.getElementById('first').value;
   const p = document.getElementById('premier');  
 
-    if (patterns.first.test(prenom)) {
+
+    if (regex.first.test(prenom)) {
       p.className = 'valid';
+      let vert = document.getElementById('first');
+      vert.style.border ="2px solid green"
       return First = 1;
     } else {
       p.className = 'invalid';  
+      let rouge = document.getElementById('first');
+      rouge.style.border ="2px solid red"
       return First = 0;   
     } 
   }
@@ -76,11 +82,15 @@ function testFirst() {
     const nom = document.getElementById('last').value;
     const p = document.getElementById('deuxieme');
 
-    if (patterns.last.test(nom)) {
+    if (regex.last.test(nom)) {
       p.className = 'valid';
+      let vert = document.getElementById('last');
+      vert.style.border ="2px solid green"
       return Last = 1; 
     } else {
       p.className = 'invalid';
+      let rouge = document.getElementById('last');
+      rouge.style.border ="2px solid red"
       return Last = 0;
     } 
   }
@@ -88,13 +98,16 @@ function testFirst() {
   function testEmail() {
     const mail = document.getElementById('email').value;
     const p = document.getElementById('troisieme');
-    const i = 0;
 
-    if (patterns.email.test(mail)) {
+    if (regex.email.test(mail)) {
       p.className = 'valid';
+      let vert = document.getElementById('email');
+      vert.style.border ="2px solid green"
       return Email = 1;  
     } else {
       p.className = 'invalid';
+      let rouge = document.getElementById('email');
+      rouge.style.border ="2px solid red"
       return Email = 0; 
     } 
   }
@@ -102,13 +115,16 @@ function testFirst() {
   function testDate() {
     const date = document.getElementById('birthdate').value;
     const p = document.getElementById('quatrieme');
-    const i = 0;
 
-    if (patterns.birthdate.test(date)) {
+    if (regex.birthdate.test(date)) {
       p.className = 'valid';
+      let vert = document.getElementById('birthdate');
+      vert.style.border ="2px solid green"
       return Birthdate = 1;  
     } else if (date == '') {
       p.className = 'invalid';
+      let rouge = document.getElementById('birthdate');
+      rouge.style.border ="2px solid red"
       return Birthdate = 0;   
     } 
   }
@@ -116,13 +132,16 @@ function testFirst() {
   function testParticipate() {
     const participate = document.getElementById('quantity').value;
     const p = document.getElementById('cinquieme');
-    const i = 0;
 
-    if (patterns.challenge.test(participate)) {
+    if (regex.challenge.test(participate)) {
       p.className = 'valid';
+      let vert = document.getElementById('quantity');
+      vert.style.border ="2px solid green"
       return Challenge = 1; 
     } else if (participate == '') {
       p.className = 'invalid';
+      let rouge = document.getElementById('quantity');
+      rouge.style.border ="2px solid red"
       return Challenge = 0;    
     } 
   }
@@ -155,7 +174,6 @@ function testFirst() {
 
 // Validation du formulaire + modal Merci
 function validation() {
-
   let sum = 0;
 
   testFirst();
@@ -173,7 +191,6 @@ function validation() {
     modalBody.innerHTML = `<div class="innerContent">Merci pour <br> votre inscription</div><div class="button buttonStyle" onclick="closeModal();">Fermer</div>`;
     return true;
   } else if (sum <= 6){
-    console.log(sum)
     return false;
   }
 
