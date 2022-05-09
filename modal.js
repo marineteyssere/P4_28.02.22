@@ -60,33 +60,49 @@ let Conditions = 0;
 
 // Test des champs 
 
+
 function testFirst() {
   const prenom = document.getElementById('first').value;
   const p = document.getElementById('premier');  
-
+  const p2 = document.getElementById('premier2');  
 
     if (regex.first.test(prenom)) {
       p.className = 'valid';
+      p2.className = 'valid'; 
       let vert = document.getElementById('first');
       vert.className ="green"
       return First = 1;
+
+    } else if (prenom.length < 2) {
+        p2.className = 'invalid';  
+        let rouge = document.getElementById('first');
+        rouge.className ="red"
+        return First = 0;    
     } else {
-      p.className = 'invalid';  
-      let rouge = document.getElementById('first');
-      rouge.className ="red"
-      return First = 0;   
-    } 
+        p.className = 'invalid';  
+        let rouge = document.getElementById('first');
+        rouge.className ="red"
+        return First = 0;    
+  } 
   }
 
   function testLast() {
     const nom = document.getElementById('last').value;
     const p = document.getElementById('deuxieme');
+    const p2 = document.getElementById('deuxieme2');  
 
     if (regex.last.test(nom)) {
       p.className = 'valid';
+      p2.className = 'valid'; 
       let vert = document.getElementById('last');
       vert.className ="green"
       return Last = 1; 
+
+    } else if (nom.length < 2) {
+      p2.className = 'invalid';  
+      let rouge = document.getElementById('last');
+      rouge.className ="red"
+      return First = 0;    
     } else {
       p.className = 'invalid';
       let rouge = document.getElementById('last');
