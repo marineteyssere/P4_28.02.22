@@ -68,12 +68,12 @@ function testFirst() {
     if (regex.first.test(prenom)) {
       p.className = 'valid';
       let vert = document.getElementById('first');
-      vert.style.border ="2px solid green"
+      vert.className ="green"
       return First = 1;
     } else {
       p.className = 'invalid';  
       let rouge = document.getElementById('first');
-      rouge.style.border ="2px solid red"
+      rouge.className ="red"
       return First = 0;   
     } 
   }
@@ -85,12 +85,12 @@ function testFirst() {
     if (regex.last.test(nom)) {
       p.className = 'valid';
       let vert = document.getElementById('last');
-      vert.style.border ="2px solid green"
+      vert.className ="green"
       return Last = 1; 
     } else {
       p.className = 'invalid';
       let rouge = document.getElementById('last');
-      rouge.style.border ="2px solid red"
+      rouge.className ="red"
       return Last = 0;
     } 
   }
@@ -102,12 +102,12 @@ function testFirst() {
     if (regex.email.test(mail)) {
       p.className = 'valid';
       let vert = document.getElementById('email');
-      vert.style.border ="2px solid green"
+      vert.className ="green"
       return Email = 1;  
     } else {
       p.className = 'invalid';
       let rouge = document.getElementById('email');
-      rouge.style.border ="2px solid red"
+      rouge.className ="red"
       return Email = 0; 
     } 
   }
@@ -119,12 +119,12 @@ function testFirst() {
     if (regex.birthdate.test(date)) {
       p.className = 'valid';
       let vert = document.getElementById('birthdate');
-      vert.style.border ="2px solid green"
+      vert.className ="green"
       return Birthdate = 1;  
     } else if (date == '') {
       p.className = 'invalid';
       let rouge = document.getElementById('birthdate');
-      rouge.style.border ="2px solid red"
+      rouge.className ="red"
       return Birthdate = 0;   
     } 
   }
@@ -136,12 +136,12 @@ function testFirst() {
     if (regex.challenge.test(participate)) {
       p.className = 'valid';
       let vert = document.getElementById('quantity');
-      vert.style.border ="2px solid green"
+      vert.className ="green"
       return Challenge = 1; 
     } else if (participate == '') {
       p.className = 'invalid';
       let rouge = document.getElementById('quantity');
-      rouge.style.border ="2px solid red"
+      rouge.className ="red"
       return Challenge = 0;    
     } 
   }

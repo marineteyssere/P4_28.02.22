@@ -226,13 +226,13 @@ input {
   height: 48px;
 }
 
-input.valid {
+.green {
   padding: 8px;
   border: 2px solid green;
   outline: none;
 }
 
-input.invalid {
+.red {
   padding: 8px;
   border: 2px solid red;
   outline: none;
