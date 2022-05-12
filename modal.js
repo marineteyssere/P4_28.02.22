@@ -13,20 +13,20 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closebtn = document.querySelectorAll(".close"); //CROIX FERMER
+const closebtn = document.querySelectorAll(".close"); // Fermer la modale
 
 
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-closebtn.forEach((btn) => btn.addEventListener("click", closeModal)); // CROIX FERMER
+closebtn.forEach((btn) => btn.addEventListener("click", closeModal)); // Fermer la modale
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 function closeModal() {
-  modalbg.style.display = "none"; //CROIX FERMER
+  modalbg.style.display = "none"; // Fermer la modale
 }
 
 // FIN PARTIE DEJA PRESENTE //
@@ -44,7 +44,7 @@ const regex = {
 };
 
 
-//Validation "C'est parti"
+//Validation 
 
 const modalBody = document.querySelector(".modal-body");
 const form = document.querySelector("form");
@@ -59,7 +59,6 @@ let Conditions = 0;
 
 
 // Test des champs 
-
 
 function testFirst() {
   const prenom = document.getElementById('first').value;
